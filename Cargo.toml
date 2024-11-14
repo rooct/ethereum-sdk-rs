@@ -2,6 +2,14 @@
 name = "ethereum-sdk"
 version = "0.1.0"
 edition = "2021"
+description = "library for ethereum"
+license = "MIT"
+
+authors = ["rooct@rooct.com"]
+homepage = "https://github.com/rooct/ethereum-sdk-rs.git"
+repository = "https://github.com/rooct/ethereum-sdk-rs.git"
+keywords = ["ethereum"]
+categories = ["api-bindings"]
 
 [dependencies]
 ethers = "2.0.11"
