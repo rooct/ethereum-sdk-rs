@@ -4,6 +4,7 @@ use std::time::Duration;
 use ethers::prelude::*;
 use ethers::providers::{Http, Provider};
 use ethers::types::{Block, Log, Transaction as EtherTransaction, TxHash};
+use merkle::{string_to_crypto_hash, MerkleTree, MerkleTreeProof, MerkleTreeRoot};
 use serde::Serialize;
 use types::{EthereumClient, SyncData, Transaction};
 
@@ -139,7 +140,7 @@ impl EthereumClient {
         for x in block.transactions.clone() {
             if let Some(receipt) = self.get_transaction_receipt(x).await? {
                 txs.push(serde_json::to_vec(&Transaction {
-                    tx_hash: serde_json::to_string(&receipt.transaction_hash).unwrap(),
+                    tx_hash: serde_json::to_string(&receipt.transaction_hash)?,
                     index: receipt.transaction_index.as_u64(),
                     logs: receipt
                         .logs
